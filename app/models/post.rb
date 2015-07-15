@@ -1,3 +1,3 @@
 class Post < ActiveRecord::Base
-  validates :title, :text, :slug, presence: true
+  validates_presence_of :title, :text, :slug
 end

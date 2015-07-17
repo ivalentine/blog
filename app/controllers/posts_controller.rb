@@ -5,7 +5,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    query = Time.new(params[:year], params[:month])
+    @post = Post.where("strftime('%Y', posts.created_at) = ? AND strftime('%m', posts.created_at) = ? AND slug = ?", query.strftime('%Y'), query.strftime('%m'), params[:slug]).first
+  end
+
+  def edit
+
   end
 
   def new
@@ -15,7 +20,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to @post
+      redirect_to action: 'show', year: @post.created_at.strftime('%Y'),
+        month: @post.created_at.strftime('%m'), slug: @post.slug
     else
       render "new"
     end

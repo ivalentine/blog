@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   get ':year/:month/:slug/edit', to: 'posts#edit',
     constraints: year_month_format, as: :edit_post
 
+  match ':year/:month/:slug/edit', to: 'posts#update',
+    constraints: year_month_format, via: [:patch, :put]
+
   get '(:year)/(:month)/(:slug)', to: 'posts#show',
     constraints: year_month_format, as: :post
-
-  match ':year/:month/:slug', to: 'posts#update',
-    constraints: year_month_format, via: [:patch, :put]
 
   delete ':year/:month/:slug', to: 'posts#destroy',
     constraints: year_month_format

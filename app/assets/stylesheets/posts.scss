@@ -2,6 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h1 {
+/*
+html {
+  background:
+}
+*/
+
+h1, p, #new-post, .post-title {
   font-family: Helvetica, Arial, sans-serif;
+}
+
+.post-title {
+  text-decoration: none;
+}
+
+#new-post {
+  display: block;
 }

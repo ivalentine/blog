@@ -1,8 +1,14 @@
 
-<%= link_to "New post", new_post_path %>
+<%= link_to "New post", new_post_path, id: "new-post" %>
 
 <% @posts.each do |post| %>
-<%= link_to post.title, post_path(post.created_at.strftime("%Y"),
-  post.created_at.strftime("%m"), post.slug) %>
-<%= post.text %>
+<article>
+  <header>
+    <h1>
+      <%= link_to post.title, post_path(post.created_at.strftime("%Y"),
+        post.created_at.strftime("%m"), post.slug), class: "post-title" %>
+    </h1>
+  </header>
+  <p><%= post.text %></p>
+</article>
 <% end %>
